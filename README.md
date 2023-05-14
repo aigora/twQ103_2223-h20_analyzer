@@ -4,7 +4,7 @@
 
 ## Integrantes del equipo
 
-Maria Godoy (mariagodoy14), Silvia Hernández (SilviaHernandezCuerdas),Marcos Castro (Marcoscg6)
+Silvia Hernández (SilviaHernandezCuerdas), Maria Godoy (mariagodoy14), Marcos Castro (Marcoscg6)
 
 ## Objetivos del trabajo
 
