@@ -73,7 +73,7 @@ int main(){
 						if (datosin== NULL){
 						printf("\nERROR AL ABRIR EL ARCHIVO\n");
 						return 1;
-						}else{	printf("\nArchivo creado con exito\n8");
+						}else{	printf("\nArchivo creado con exito\n");
 						}
 						printf("Introduzca el numero de fuentes de su estudio:\n");
     					scanf("%d", &n);
