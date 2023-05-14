@@ -57,8 +57,8 @@ int main(){
 						 
                 case 2 : 
 				
-				printf("SELECCIONE LOS DATOS DEL FICHERO \n");
-                		printf("Introduzca las 4 cifras seguidas del anio del estudio:\n");
+				printf("INDIQUE A CONTINUACION LOS DATOS DEL FICHERO \n");
+                		printf("Introduzca los cuatro numeros del anio del estudio:\n");
 						scanf("%d", &nomFichero.anio);
 
 						printf("Introduzca el mes (01-12):\n");
