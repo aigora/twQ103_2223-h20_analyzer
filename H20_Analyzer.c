@@ -26,7 +26,7 @@ struct Tfichero{
 void mediaPH(const, int);
 
 void crearFicheroDatos(){
-	char nomArchivo[50];
+	char nomArchivo[PARAMETROS];
 	struct Tdatos datos[TAM_Datos];
 	struct Tfichero nomFichero;
 	FILE *datosin;
