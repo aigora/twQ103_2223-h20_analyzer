@@ -162,17 +162,6 @@ void crearFicheroDatos(){
 		fprintf(datosin,"fuente_%d\t\t%f\t\t%d\t\t%d\t\t%d\n",i+1,datos[i].ph,datos[i].conductividad,datos[i].turbidez,datos[i].coliformes);
 		}
 	fclose(datosin);
-}
-
-   
-void mediaPH(const Tdatos datos[], int numDatos){
-	int sumaPH = 0, i, mediaPH = 0;;
-	for(i = 0; i < numDatos; i++){
-		sumaPH += datos[i].ph
-	}	
-	
-	mediaPH = sumaPH / numDatos;
-	printf("Media de ph: %d\n", mediaPH);
 }	
 
 
