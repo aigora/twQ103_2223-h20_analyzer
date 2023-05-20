@@ -5,11 +5,12 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+
 #define PARAMETROS 50
 #define TAM_Datos 100
 
 struct Tdatos{
-	char parametros[50];
+	std::string parametros;
 	float ph;
 	int conductividad;
 	int turbidez;
@@ -19,22 +20,31 @@ struct Tdatos{
 struct Tfichero{
 	int anio;
 	int mes;
-	char lugar[50];
+	std::string lugar;
 };
+
+int mediaPH(struct, int);
 
 int main(){
 	
-	int opcion,dato,i,j,n;
+	int opcion,dato,i,j,n, dato2;
 	char nomArchivo[50];
 	struct Tdatos datos[TAM_Datos];
 	struct Tfichero nomFichero;
 	FILE * datosin;
 	FILE * datosout;
+	FILE *fichero;
 	
+	fichero = fopen("202301_Lavapies.txt", "r");
+	
+	if(fichero == NULL) {
+		printf("Error, no se puede abrir el fichero.\n");
+		return 0;
+	}	
 	
 	printf("Bienvenido al menu de opciones de H20_ANALYZER \n\n");
 	printf("Escoja una de las siguientes opciones:\n");
-	printf(" Opcion 1): Comparar datos\n Opcion 2): Crear fichero de datos \n Opcion 3): Sacar datos de una fuente\n Opcion 4): Salir \n");
+	printf(" Opcion\n 1): Comparar datos\n Opcion\n 2): Crear fichero de datos \n Opcion 3): Sacar datos de una fuente\n Opcion 4): Salir \n");
 	scanf("%d", &opcion);
   		switch(opcion){
                 case 1: do{
@@ -44,12 +54,41 @@ int main(){
 						
 						switch(dato){
 							case 1: 
+								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
+								scanf("%d", &dato2);
+									}while(dato2!=1);
+									switch(dato2){
+										case 1:
+											break;
+									}
 								break;
 							case 2:
+								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
+								scanf("%d", &dato2);
+									}while(dato2<1||dato2>1);
+									switch(dato2){
+										case 1:
+											
+											break;
+									}
 								break;
 							case 3:
+								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
+								scanf("%d", &dato2);
+									}while(dato2<1||dato2>1);
+									switch(dato2){
+										case 1:
+											break;
+									}
 								break;
 							case 4: 
+								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
+								scanf("%d", &dato2);
+									}while(dato2<1||dato2>1);
+									switch(dato2){
+										case 1:
+											break;
+									}
 								break;
 							default : printf("Opcion desconocida\n");
 					}	
@@ -98,12 +137,24 @@ int main(){
                         return 0;
                 default : printf("Opcion desconocida\n");
     }
- 	
 
 
 	
 return 0;
 }
 
-    
+   
+int mediaPH(struct Tdatos datos[], int numDatos){
+	int sumaPH = 0, i, mediaPH = 0;;
+	for(i = 0; i < numDatos; i++){
+		sumaPH += datos[i].ph
+	}	
+	
+	mediaPH = sumaPH / numDatos;
+	
+	return mediaPH;
+}	
+
+
+
 
