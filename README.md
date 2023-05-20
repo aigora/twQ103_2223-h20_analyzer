@@ -1,6 +1,6 @@
 # H20 ANALYZER
 
-[Descripción breve del proyecto a realizar (2-3 frases).]
+El objetivo principal es crear un programa que nos permita analizar diferentes propiedades, como la conductividad y el Ph entre otras, que tienen diferentes aguas recogidas por todo madrid e implementarlo para un uso más amplio y funcional que servirá para usarlo durante todos los años que se necesite.
 
 ## Integrantes del equipo
 
