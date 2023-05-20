@@ -10,7 +10,7 @@
 #define TAM_Datos 100
 
 struct Tdatos{
-	std::string parametros;
+	char parametros[PARAMETROS];
 	float ph;
 	int conductividad;
 	int turbidez;
@@ -20,7 +20,7 @@ struct Tdatos{
 struct Tfichero{
 	int anio;
 	int mes;
-	std::string lugar;
+	char lugar[PARAMETROS];
 };
 
 void mediaPH(const, int);
