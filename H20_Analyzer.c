@@ -10,7 +10,7 @@
 #define TAM_Datos 100
 
 struct Tdatos{
-	char parametros[PARAMETROS];
+	std::string parametros;
 	float ph;
 	int conductividad;
 	int turbidez;
@@ -20,55 +20,12 @@ struct Tdatos{
 struct Tfichero{
 	int anio;
 	int mes;
-	char lugar[PARAMETROS];
+	std::string lugar;
 };
 
 void mediaPH(const, int);
 
-void crearFicheroDatos(){
-	char nomArchivo[PARAMETROS];
-	struct Tdatos datos[TAM_Datos];
-	struct Tfichero nomFichero;
-	FILE *datosin;
-	FILE *datosout;
-	int i,j,n;
-	
-	printf("INDIQUE A CONTINUACION LOS DATOS DEL FICHERO \n");
-        printf("Introduzca los cuatro numeros del anio del estudio:\n");
-	scanf("%d", &nomFichero.anio);
-
-	printf("Introduzca el mes (01-12):\n");
-	scanf("%d", &nomFichero.mes);
-
-	printf("Introduzca el nombre del lugar en minusculas empezando con mayuscula:\n");
-	scanf("%s", &nomFichero.lugar);
-	
-	sprintf(nomArchivo, "%d%d_%s.txt",nomFichero.anio,nomFichero.mes,nomFichero.lugar);
-
-	datosin= fopen(nomArchivo,"w");
-	
-	if (datosin== NULL){
-	printf("\nERROR AL ABRIR EL ARCHIVO\n");
-	return 1;
-	}else{	printf("\nArchivo creado con exito\n");
-	}
-	printf("Introduzca el numero de fuentes de su estudio:\n");
-	scanf("%d", &n);
-	fprintf(datosin,"Parametros\t\tpH\t\tConductividad\t\tTurbidez\t\tColiformes\n");
-	
-	for(i=0;i<n;i++){
-		printf("introduzca el PH de la fuente%d\n",i+1);
-		scanf("%f",&datos[i].ph);
-		printf("Introduzca la conductividad %d\n",i+1);
-		scanf("%d",&datos[i].conductividad);
-		printf("Introduzca la turbidez%d\n",i+1);
-		scanf("%d",&datos[i].turbidez);
-		printf("Introduzca los coliformes%d\n",i+1);
-		scanf("%d",&datos[i].coliformes);
-		fprintf(datosin,"fuente_%d\t\t%f\t\t%d\t\t%d\t\t%d\n",i+1,datos[i].ph,datos[i].conductividad,datos[i].turbidez,datos[i].coliformes);
-		}
-	fclose(datosin);
-}
+void crearFicheroDatos();
 
 int main(){
 	
@@ -136,8 +93,7 @@ int main(){
 					}	
 						 break;
 						 
-                case 2 : 
-			
+                case 2 : crearFicheroDatos();
                        break;
                        
                 case 3 : printf("Opcion 3\n");
@@ -150,6 +106,62 @@ int main(){
 
 	
 return 0;
+}
+
+   
+void mediaPH(const Tdatos datos[], int numDatos){
+	int sumaPH = 0, i, mediaPH = 0;;
+	for(i = 0; i < numDatos; i++){
+		sumaPH += datos[i].ph
+	}	
+	
+	mediaPH = sumaPH / numDatos;
+	printf("Media de ph: %d\n", mediaPH);
+}
+
+void crearFicheroDatos(){
+	char nomArchivo[50];
+	struct Tdatos datos[TAM_Datos];
+	struct Tfichero nomFichero;
+	FILE *datosin;
+	FILE *datosout;
+	int i,j,n;
+	
+	printf("INDIQUE A CONTINUACION LOS DATOS DEL FICHERO \n");
+        printf("Introduzca los cuatro numeros del anio del estudio:\n");
+	scanf("%d", &nomFichero.anio);
+
+	printf("Introduzca el mes (01-12):\n");
+	scanf("%d", &nomFichero.mes);
+
+	printf("Introduzca el nombre del lugar en minusculas empezando con mayuscula:\n");
+	scanf("%s", &nomFichero.lugar);
+	
+	sprintf(nomArchivo, "%d%d_%s.txt",nomFichero.anio,nomFichero.mes,nomFichero.lugar);
+
+	datosin= fopen(nomArchivo,"w");
+	
+	if (datosin== NULL){
+	printf("\nERROR AL ABRIR EL ARCHIVO\n");
+	return 1;
+	}else{	printf("\nArchivo creado con exito\n");
+	}
+	printf("Introduzca el numero de fuentes de su estudio:\n");
+	scanf("%d", &n);
+	fprintf(datosin,"Parametros\t\tpH\t\tConductividad\t\tTurbidez\t\tColiformes\n");
+	
+	for(i=0;i<n;i++){
+		printf("introduzca el PH de la fuente%d\n",i+1);
+		scanf("%f",&datos[i].ph);
+		printf("Introduzca la conductividad %d\n",i+1);
+		scanf("%d",&datos[i].conductividad);
+		printf("Introduzca la turbidez%d\n",i+1);
+		scanf("%d",&datos[i].turbidez);
+		printf("Introduzca los coliformes%d\n",i+1);
+		scanf("%d",&datos[i].coliformes);
+		fprintf(datosin,"fuente_%d\t\t%f\t\t%d\t\t%d\t\t%d\n",i+1,datos[i].ph,datos[i].conductividad,datos[i].turbidez,datos[i].coliformes);
+		}
+	fclose(datosin);
 }
 
    
