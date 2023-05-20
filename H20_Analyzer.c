@@ -101,7 +101,6 @@ int main(){
 									}while(dato2!=1);
 									switch(dato2){
 										case 1:
-											media = 
 											break;
 									}
 								break;
