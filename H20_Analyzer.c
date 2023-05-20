@@ -26,7 +26,12 @@ struct Tfichero{
 void mediaPH(const, int);
 
 void crearFicheroDatos(){
-	Tfichero nomFichero;
+	char nomArchivo[50];
+	struct Tdatos datos[TAM_Datos];
+	struct Tfichero nomFichero;
+	FILE *datosin;
+	FILE *datosout;
+	int i,j,n;
 	
 	printf("INDIQUE A CONTINUACION LOS DATOS DEL FICHERO \n");
         printf("Introduzca los cuatro numeros del anio del estudio:\n");
@@ -67,12 +72,8 @@ void crearFicheroDatos(){
 
 int main(){
 	
-	int opcion,dato,i,j,n, dato2;
-	char nomArchivo[50];
-	struct Tdatos datos[TAM_Datos];
-	struct Tfichero nomFichero;
-	FILE * datosin;
-	FILE * datosout;
+	int opcion, dato, dato2;
+	
 	FILE *fichero;
 	int media;
 	
