@@ -23,14 +23,14 @@ struct Tfichero {
     char lugar[PARAMETROS];
 };
 
-float media(float datos[], int numDatos);
-float desviacion_tipica(float datos[], float media, int numDatos);
+float calcular_media(float datos[], int numDatos);
+float calcular_desviacion_tipica(float datos[], float media, int numDatos);
 void crearFicheroDatos();
 
 int main() {
     struct Tdatos datos[TAM_DATOS];
     int opcion, dato, numDatos, dato2, i;
-    float medias, desviacion_tipica;
+    float media_val, desviacion_tipica_val;
 
     FILE* fichero;
     FILE* fsalida;
@@ -44,7 +44,7 @@ int main() {
 
     printf("Bienvenido al menú de opciones de H20_ANALYZER\n");
     printf("Escoja una de las siguientes opciones:\n");
-    printf("1) Calculos estadisticos\n2) Crear fichero de datos\n3) Salir\n");
+    printf("1) Cálculos estadísticos\n2) Crear fichero de datos\n3) Salir\n");
     scanf("%d", &opcion);
 
     switch (opcion) {
@@ -65,15 +65,16 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media = media(datos[].ph, numDatos);
-                            printf("La media es: %.2f", media);
+                            media_val = calcular_media(datos[].ph, numDatos);
+                            printf("La media es: %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica = desviacion_tipica(datos[].ph, media, numDatos);
-                            printf("La deviacion tipica es: %.2f", desviacion_tipica);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].ph, media_val, numDatos);
+                            printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
+                    break;
 
                 case 2:
                     do {
@@ -84,15 +85,16 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media = media(datos[].conductividad, numDatos);
-                            printf("La media es %.2f", media);
+                            media_val = calcular_media(datos[].conductividad, numDatos);
+                            printf("La media es %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica = desviacion_tipica(datos[].conductividad, media, numDatos);
-                            printf("La deviacion tipica es: %.2f", desviacion_tipica);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].conductividad, media_val, numDatos);
+                            printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
+                    break;
 
                 case 3:
                     do {
@@ -103,15 +105,16 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media = media(datos[].turbidez, numDatos);
-                            printf("La media es: %.2f", media);
+                            media_val = calcular_media(datos[].turbidez, numDatos);
+                            printf("La media es: %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica = desviacion_tipica(datos[].turbidez, media, numDatos);
-                            printf("La deviacion tipica es: %.2f", desviacion_tipica);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].turbidez, media_val, numDatos);
+                            printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
+                    break;
 
                 case 4:
                     do {
@@ -122,15 +125,16 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media = media(datos[].coliformes, numDatos);
-                            printf("La media es: %.2f", media);
+                            media_val = calcular_media(datos[].coliformes, numDatos);
+                            printf("La media es: %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica = desviacion_tipica(datos[].coliformes, media, numDatos);
-                            printf("La deviacion tipica es: %.2f", desviacion_tipica);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].coliformes, media_val, numDatos);
+                            printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
+                    break;
             }
             break;
 
@@ -149,7 +153,7 @@ int main() {
     return 0;
 }
 
-float media(float datos[], int numDatos) {
+float calcular_media(float datos[], int numDatos) {
     float suma = 0;
     float media = 0;
     int i;
@@ -163,7 +167,7 @@ float media(float datos[], int numDatos) {
     return media;
 }
 
-float desviacion_tipica(float datos[], float media, int numDatos) {
+float calcular_desviacion_tipica(float datos[], float media, int numDatos) {
     float suma = 0;
     int i;
     float desviacion_tipica = 0;
@@ -222,5 +226,3 @@ void crearFicheroDatos() {
     }
     fclose(datosin);
 }
-
-
