@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
@@ -23,16 +24,18 @@ struct Tfichero{
 	std::string lugar;
 };
 
-void mediaPH(const, int);
+void media(float Tdatos datos[], int numDatos);
+
+void desviacion_tipica(float Tdatos datos[], int media, int numDatos);
 
 void crearFicheroDatos();
 
 int main(){
 	
-	int opcion, dato, dato2;
+	int opcion, dato, numDatos;
+	float media, desviacion_tipica;
 	
 	FILE *fichero;
-	int media;
 	
 	fichero = fopen("202301_Lavapies.txt", "r");
 	
@@ -41,66 +44,55 @@ int main(){
 		return 0;
 	}	
 	
-	printf("Bienvenido al menu de opciones de H20_ANALYZER \n\n");
+	printf("Bienvenido al menu de opciones de H20_ANALYZER \n");
 	printf("Escoja una de las siguientes opciones:\n");
-	printf(" Opcion\n 1): Comparar datos\n Opcion\n 2): Crear fichero de datos \n Opcion 3): Sacar datos de una fuente\n Opcion 4): Salir \n");
+	printf("1): Calculos estadisticos\n 2): Crear fichero de datos\n 3): Salir \n");
 	scanf("%d", &opcion);
-  		switch(opcion){
+	
+  	switch(opcion){
                 case 1: do{
-					printf("SELECCIONE EL DATO A COMPARAR:\n 1:pH\n 2:conductividad\n 3:turbidez\n 4:coliformes\n"); 
-					scanf("%d", &dato); 
-						}while (dato<1 || dato>4); 
+			   printf("Seleccione los datos a tratar:\n 1)El  pH\n 2) La conductividad\n 3) La turbidez\n 4) Los coliformes\n"); 
+			   scanf("%d", &dato); 
+			}while (dato<1 || dato>4); 
 						
-						switch(dato){
-							case 1: 
-								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
-								scanf("%d", &dato2);
-									}while(dato2!=1);
-									switch(dato2){
-										case 1:
-											break;
-									}
-								break;
-							case 2:
-								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
-								scanf("%d", &dato2);
-									}while(dato2<1||dato2>1);
-									switch(dato2){
-										case 1:
-											
-											break;
-									}
-								break;
-							case 3:
-								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
-								scanf("%d", &dato2);
-									}while(dato2<1||dato2>1);
-									switch(dato2){
-										case 1:
-											break;
-									}
-								break;
-							case 4: 
-								printf("SELECCIONE LO QUE QUIERE COMPARAR:\n 1:MEDIA\n"); 
-								scanf("%d", &dato2);
-									}while(dato2<1||dato2>1);
-									switch(dato2){
-										case 1:
-											break;
-									}
-								break;
-							default : printf("Opcion desconocida\n");
+					switch(dato){
+						case 1: printf("Para el pH:\n");
+							media=media(float Tdatos datos[].ph, int numDatos);
+							printf("La media es: %.2f", media);
+							desviacion_tipica=desviacion_tipica(float Tdatos datos[].ph, media, int numDatos);
+							printf("La deviacion tipica es: %.2f", desviacion_tipica);
+							break;
+							
+						case 2: printf("Para la conductividad:\n");
+							media=media(float Tdatos datos[].conductividad, int numDatos);
+							printf("La media es %.2f", media);
+							desviacion_tipica=desviacion_tipica(float Tdatos datos[].conductividad, media, int numDatos);
+							printf("La deviacion tipica es: %.2f", desviacion_tipica);
+							break;	
+							
+						case 3: printf("Para la turbidez:\n");
+							media=media(float Tdatos datos[].turbidez, int numDatos);
+							printf("La media es: %.2f", media);
+							desviacion_tipica=desviacion_tipica(float Tdatos datos[].turbidez, media, int numDatos);
+							printf("La deviacion tipica es: %.2f", desviacion_tipica);
+							break;	
+							
+					        case 4: printf("Para los coliformes:\n");
+							media=media(float Tdatos datos[].coliformes, int numDatos);
+							printf("La media es: %.2f", media);
+							desviacion_tipica=desviacion_tipica(float Tdatos datos[].coliformes, media, int numDatos);
+							printf("La deviacion tipica es: %.2f", desviacion_tipica);
+							break;
+							
 					}	
-						 break;
+			break;
 						 
-                case 2 : crearFicheroDatos();
-                       break;
+                 case 2 : crearFicheroDatos();
+                        break;
                        
-                case 3 : printf("Opcion 3\n");
-                    	break;
-                case 4 : printf("______Hasta la proxima_____\n");
-                        return 0;
-                default : printf("Opcion desconocida\n");
+                 case 3 : printf("______Hasta la proxima_____\n");
+                         return 0;
+                 default : printf("Opcion desconocida\n");
     }
 
 
@@ -109,14 +101,26 @@ return 0;
 }
 
    
-void mediaPH(const Tdatos datos[], int numDatos){
-	int sumaPH = 0, i, mediaPH = 0;;
+void media(float Tdatos datos[], int numDatos){
+	int suma = 0, i; 
+	float media = 0;
 	for(i = 0; i < numDatos; i++){
-		sumaPH += datos[i].ph
+		suma += datos[i];
 	}	
 	
-	mediaPH = sumaPH / numDatos;
-	printf("Media de ph: %d\n", mediaPH);
+	media = suma / numDatos;
+	return media;
+}
+
+void desviacion_tipica(float Tdatos datos[], media, int numDatos){
+	int suma = 0, i;
+	float desviacion_tipica = 0;
+	for(i = 0; i < numDatos; i++){
+		suma += pow(datos[i] - media,2);
+	}	
+	
+	desviacion_tipica = pow(suma/(numDatos*(numDatos-1)) ,1/2);
+	return desviacion_tipica;
 }
 
 void crearFicheroDatos(){
@@ -142,10 +146,12 @@ void crearFicheroDatos(){
 	datosin= fopen(nomArchivo,"w");
 	
 	if (datosin== NULL){
-	printf("\nERROR AL ABRIR EL ARCHIVO\n");
-	return 1;
-	}else{	printf("\nArchivo creado con exito\n");
+	   printf("\nERROR AL ABRIR EL ARCHIVO\n");
+	   return 1;
 	}
+	
+	else  printf("\nArchivo creado con exito\n");
+	
 	printf("Introduzca el numero de fuentes de su estudio:\n");
 	scanf("%d", &n);
 	fprintf(datosin,"Parametros\t\tpH\t\tConductividad\t\tTurbidez\t\tColiformes\n");
