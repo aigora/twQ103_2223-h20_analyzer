@@ -159,7 +159,7 @@ float calcular_media(float datos[], int numDatos) {
     float media = 0;
     int i;
 
-    for (i = 2; i <= numDatos; i++) {
+    for (i = 2; i <= numDatos+1; i++) {
         suma += datos[i];
     }
 
@@ -173,7 +173,7 @@ float calcular_desviacion_tipica(float datos[], float media, int numDatos) {
     int i;
     float desviacion_tipica = 0;
 
-    for (i = 2; i <= numDatos; i++) {
+    for (i = 2; i <= numDatos+1; i++) {
         suma += pow(datos[i] - media, 2);
     }
 
