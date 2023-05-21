@@ -7,4 +7,4 @@ Silvia Hernández (SilviaHernandezCuerdas), Maria Godoy (mariagodoy14)
 
 ## Objetivos del trabajo
 
-Permitir al usuario regitrar parametros analizados sobre fuentes de distintas zonas y comparar los datos ya registrados mediante estudios estadisticos del programa. 
+Permitir al usuario regitrar parametros analizados sobre fuentes de distintas zonas de Madrid y comparar los datos ya registrados mediante estudios estadisticos del programa. 
