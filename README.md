@@ -3,8 +3,8 @@ Crear un programa que nos permita analizar diferentes propiedades, como la condu
 
 ## Integrantes del equipo
 
-Silvia Hernández (SilviaHernandezCuerdas), Maria Godoy (mariagodoy14), Marcos Castro (Marcoscg6)
+Silvia Hernández (SilviaHernandezCuerdas), Maria Godoy (mariagodoy14)
 
 ## Objetivos del trabajo
 
-[Lista de los objetivos que se persiguen con el trabajo propuesto.]
+Permitir al usuario regitrar parametros analizados sobre fuentes de distintas zonas y comparar los datos ya registrados mediante estudios estadisticos del programa. 
