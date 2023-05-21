@@ -26,6 +26,7 @@ struct Tfichero {
 
 float calcular_media(float datos[], int numDatos);
 float calcular_desviacion_tipica(float datos[], float media, int numDatos);
+void obtener_mayor_menor_parametros();
 void crearFicheroDatos();
 
 int main() {
@@ -45,14 +46,14 @@ int main() {
 
     printf("Bienvenido al menú de opciones de H20_ANALYZER\n");
     printf("Escoja una de las siguientes opciones:\n");
-    printf("1) Cálculos estadísticos\n2) Crear fichero de datos\n3) Salir\n");
+    printf("1) Cálculos estadísticos\n 2) Comparar parametros\n 3) Crear fichero de datos\n 4)Salir\n");
     scanf("%d", &opcion);
 
     switch (opcion) {
         case 1:
             do {
                 printf("Seleccione los datos a tratar:\n");
-                printf("1) El pH\n2) La conductividad\n3) La turbidez\n4) Los coliformes\n");
+                printf("1) El pH\n 2) La conductividad\n 3) La turbidez\n 4) Los coliformes\n");
                 scanf("%d", &dato);
             } while (dato < 1 || dato > 4);
 
@@ -71,6 +72,7 @@ int main() {
                             break;
 
                         case 2:
+                        	media_val = calcular_media(datos[numDatos].ph, numDatos);
                             desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].ph, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
@@ -91,6 +93,7 @@ int main() {
                             break;
 
                         case 2:
+                        	media_val = calcular_media(datos[numDatos].conductividad, numDatos);
                             desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].conductividad, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
@@ -111,6 +114,7 @@ int main() {
                             break;
 
                         case 2:
+                        	media_val = calcular_media(datos[numDatos].turbidez, numDatos);
                             desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].turbidez, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
@@ -131,6 +135,7 @@ int main() {
                             break;
 
                         case 2:
+                        	media_val = calcular_media(datos[numDatos].coliformes, numDatos);
                             desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].coliformes, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
@@ -138,12 +143,16 @@ int main() {
                     break;
             }
             break;
-
+            
         case 2:
+        	obtener_mayor_menor_parametros();
+    		break;
+
+        case 3:
             crearFicheroDatos();
             break;
 
-        case 3:
+        case 4:
             printf("______Hasta la próxima_____\n");
             return 0;
 
@@ -159,7 +168,7 @@ float calcular_media(float datos[], int numDatos) {
     float media = 0;
     int i;
 
-    for (i = 2; i <= numDatos+1; i++) {
+    for (i = 1; i < numDatos+1; i++) {
         suma += datos[i];
     }
 
@@ -173,13 +182,66 @@ float calcular_desviacion_tipica(float datos[], float media, int numDatos) {
     int i;
     float desviacion_tipica = 0;
 
-    for (i = 2; i <= numDatos+1; i++) {
+    for (i = 1; i <= numDatos+1; i++) {
         suma += pow(datos[i] - media, 2);
     }
 
     desviacion_tipica = sqrt(suma / (numDatos * (numDatos - 1)));
 
     return desviacion_tipica;
+}
+
+void obtener_mayor_menor_parametros() {
+    FILE *fichero;
+    struct Tdatos datos[TAM_DATOS];
+    int i;
+    int max_ph = 0, min_ph = 0;
+    int max_conductividad = 0, min_conductividad = 0;
+    int max_turbidez = 0, min_turbidez = 0;
+    int max_coliformes = 0, min_coliformes = 0;
+
+    fichero = fopen("202301_Lavapies.txt", "r");
+
+    if (fichero == NULL) {
+        printf("Error, no se puede abrir el fichero.\n");
+        return;
+    }
+
+    for (i = 1; i <= numDatos+1; i++) {
+        fscanf(fichero, "%*s%f%d%d%d", &datos[i].ph, &datos[i].conductividad, &datos[i].turbidez, &datos[i].coliformes);
+
+        if (datos[i].ph > datos[max_ph].ph){
+            max_ph = i;
+    	}else{
+            min_ph = i;
+    	}
+
+        if (datos[i].conductividad > datos[max_conductividad].conductividad){
+            max_conductividad = i;
+        }else{
+            min_conductividad = i;
+        }
+
+        if (datos[i].turbidez > datos[max_turbidez].turbidez){
+            max_turbidez = i;
+        }else{
+            min_turbidez = i;
+        }
+
+        if (datos[i].coliformes > datos[max_coliformes].coliformes){
+            max_coliformes = i;
+        }else{
+            min_coliformes = i;
+        }
+    }
+
+    fclose(fichero);
+
+    printf("Número mayor y menor de cada parámetro:\n");
+    printf("pH: Mayor=%.2f (fuente_%d), Menor=%.2f (fuente_%d)\n", datos[max_ph].ph, max_ph + 1, datos[min_ph].ph, min_ph + 1);
+    printf("Conductividad: Mayor=%d (fuente_%d), Menor=%d (fuente_%d)\n", datos[max_conductividad].conductividad, max_conductividad + 1, datos[min_conductividad].conductividad, min_conductividad + 1);
+    printf("Turbidez: Mayor=%d (fuente_%d), Menor=%d (fuente_%d)\n", datos[max_turbidez].turbidez, max_turbidez + 1, datos[min_turbidez].turbidez, min_turbidez + 1);
+    printf("Coliformes: Mayor=%d (fuente_%d), Menor=%d (fuente_%d)\n", datos[max_coliformes].coliformes, max_coliformes + 1, datos[min_coliformes].coliformes, min_coliformes + 1);
 }
 
 void crearFicheroDatos() {
