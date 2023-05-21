@@ -3,8 +3,8 @@ Crear un programa que nos permita analizar diferentes propiedades, como la condu
 
 ## Integrantes del equipo
 
-Silvia Hernández (SilviaHernandezCuerdas), Maria Godoy (mariagodoy14)
+Silvia Hernández (SilviaHernandezCuerdas), Maria Godoy (mariagodoy14), Raúl Del Campo (LordDementus) .
 
 ## Objetivos del trabajo
 
-Permitir al usuario regitrar parametros analizados sobre fuentes de distintas zonas de Madrid y comparar los datos ya registrados mediante estudios estadisticos del programa. 
+Permitir al usuario regitrar parametros analizados sobre fuentes de distintas zonas de Madrid y comparar los datos ya registrados mediante estudios estadisticos del programa. Además de poder analizar los datos ya registrados puediendo elegir distintas opciones como saber la media y la desviación típica de cada parametro. 
