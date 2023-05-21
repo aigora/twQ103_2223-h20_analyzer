@@ -8,6 +8,7 @@
 
 #define PARAMETROS 50
 #define TAM_DATOS 100
+#define numDatos 25
 
 struct Tdatos {
     char parametros[PARAMETROS];
@@ -65,12 +66,12 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media_val = calcular_media(datos[].ph, numDatos);
+                            media_val = calcular_media(datos[numDatos].ph, numDatos);
                             printf("La media es: %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].ph, media_val, numDatos);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].ph, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
@@ -85,12 +86,12 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media_val = calcular_media(datos[].conductividad, numDatos);
+                            media_val = calcular_media(datos[numDatos].conductividad, numDatos);
                             printf("La media es %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].conductividad, media_val, numDatos);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].conductividad, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
@@ -105,12 +106,12 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media_val = calcular_media(datos[].turbidez, numDatos);
+                            media_val = calcular_media(datos[numDatos].turbidez, numDatos);
                             printf("La media es: %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].turbidez, media_val, numDatos);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].turbidez, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
@@ -125,12 +126,12 @@ int main() {
 
                     switch (dato2) {
                         case 1:
-                            media_val = calcular_media(datos[].coliformes, numDatos);
+                            media_val = calcular_media(datos[numDatos].coliformes, numDatos);
                             printf("La media es: %.2f", media_val);
                             break;
 
                         case 2:
-                            desviacion_tipica_val = calcular_desviacion_tipica(datos[].coliformes, media_val, numDatos);
+                            desviacion_tipica_val = calcular_desviacion_tipica(datos[numDatos].coliformes, media_val, numDatos);
                             printf("La desviación típica es: %.2f", desviacion_tipica_val);
                             break;
                     }
@@ -158,7 +159,7 @@ float calcular_media(float datos[], int numDatos) {
     float media = 0;
     int i;
 
-    for (i = 0; i < numDatos; i++) {
+    for (i = 2; i <= numDatos; i++) {
         suma += datos[i];
     }
 
@@ -172,7 +173,7 @@ float calcular_desviacion_tipica(float datos[], float media, int numDatos) {
     int i;
     float desviacion_tipica = 0;
 
-    for (i = 0; i < numDatos; i++) {
+    for (i = 2; i <= numDatos; i++) {
         suma += pow(datos[i] - media, 2);
     }
 
