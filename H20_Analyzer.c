@@ -10,6 +10,8 @@
 #define TAM_DATOS 100
 #define numDatos 25
 
+//Estructura de datos 
+
 struct Tdatos {
     char parametros[PARAMETROS];
     float ph;
@@ -17,6 +19,8 @@ struct Tdatos {
     int turbidez;
     int coliformes;
 };
+
+//Estructura del nuevo fichero
 
 struct Tfichero {
     int anio;
@@ -29,11 +33,15 @@ float calcular_desviacion_tipica(float datos[], float media, int numDatos);
 void obtener_mayor_menor_parametros();
 void crearFicheroDatos();
 
+//Funcion principal 
+
 int main() {
     struct Tdatos datos[TAM_DATOS];
     int opcion, dato, numDatos, dato2, i;
     float media_val, desviacion_tipica_val;
 
+ //Leemos el txt   
+    
     FILE* fichero;
     FILE* fsalida;
 
@@ -43,6 +51,8 @@ int main() {
         printf("Error, no se puede abrir el fichero.\n");
         return 0;
     }
+    
+    //Menú de opciones 
 
     printf("Bienvenido al menú de opciones de H20_ANALYZER\n");
     printf("Escoja una de las siguientes opciones:\n");
@@ -163,12 +173,14 @@ int main() {
     return 0;
 }
 
+//Funcion para calcular la media
+
 float calcular_media(float datos[], int numDatos) {
     float suma = 0;
     float media = 0;
     int i;
 
-    for (i = 1; i < numDatos+1; i++) {
+    for (i = 0; i < numDatos; i++) {
         suma += datos[i];
     }
 
@@ -177,12 +189,14 @@ float calcular_media(float datos[], int numDatos) {
     return media;
 }
 
+//Función para calcular la desviación típica 
+
 float calcular_desviacion_tipica(float datos[], float media, int numDatos) {
     float suma = 0;
     int i;
     float desviacion_tipica = 0;
 
-    for (i = 1; i <= numDatos+1; i++) {
+    for (i = 0; i < numDatos; i++) {
         suma += pow(datos[i] - media, 2);
     }
 
@@ -190,6 +204,8 @@ float calcular_desviacion_tipica(float datos[], float media, int numDatos) {
 
     return desviacion_tipica;
 }
+
+//Función para obtener el parámetro mayor y menor
 
 void obtener_mayor_menor_parametros() {
     FILE *fichero;
@@ -207,7 +223,7 @@ void obtener_mayor_menor_parametros() {
         return;
     }
 
-    for (i = 1; i <= numDatos+1; i++) {
+    for (i = 0; i < numDatos; i++) {
         fscanf(fichero, "%*s%f%d%d%d", &datos[i].ph, &datos[i].conductividad, &datos[i].turbidez, &datos[i].coliformes);
 
         if (datos[i].ph > datos[max_ph].ph){
@@ -243,6 +259,8 @@ void obtener_mayor_menor_parametros() {
     printf("Turbidez: Mayor=%d (fuente_%d), Menor=%d (fuente_%d)\n", datos[max_turbidez].turbidez, max_turbidez + 1, datos[min_turbidez].turbidez, min_turbidez + 1);
     printf("Coliformes: Mayor=%d (fuente_%d), Menor=%d (fuente_%d)\n", datos[max_coliformes].coliformes, max_coliformes + 1, datos[min_coliformes].coliformes, min_coliformes + 1);
 }
+
+//Función para crear un nuevo fichero
 
 void crearFicheroDatos() {
     char nomArchivo[50];
