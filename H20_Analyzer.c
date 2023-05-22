@@ -8,7 +8,7 @@
 
 #define PARAMETROS 50
 #define TAM_DATOS 100
-#define numDatos 25
+#define numDatos 26
 
 //Estructura de datos 
 
