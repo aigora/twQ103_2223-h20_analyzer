@@ -7,7 +7,7 @@
 
 struct Tdatos {
     char parametros[PARAMETROS];
-	float ph;    
+    float ph;    
     int conductividad;
     int turbidez;
     int coliformes;
@@ -471,48 +471,79 @@ float calcular_desv_colif(struct Tdatos datos[], float media, int N) {
     return desviacion_tipica;
 }
 
+
 //Funcion para obtener el parametro mayor y menor
 
 void obtener_mayor_menor_parametros(struct Tdatos datos[], int N) {
+	
     int i;
-    int max_ph = 0, min_ph = 0;
-    int max_conductividad = 0, min_conductividad = 0;
-    int max_turbidez = 0, min_turbidez = 0;
-    int max_coliformes = 0, min_coliformes = 0;
+    float max_ph = datos[0].ph, min_ph = datos[0].ph;
+    int i_ph_max = 0, i_ph_min = 0, i_max_cond = 0, i_min_cond = 0, i_max_turb = 0, i_min_turb = 0, i_max_colif = 0, i_min_coli = 0;
+    int max_conductividad = datos[0].conductividad, min_conductividad = datos[0].conductividad;
+    int max_turbidez = datos[0].turbidez, min_turbidez = datos[0].turbidez;
+    int max_coliformes = datos[0].coliformes, min_coliformes = datos[0].coliformes;
 
     for (i = 0; i < N; i++) {
-
-        if (datos[i].ph > datos[max_ph].ph){
-            max_ph = i;
-    	}else{
-            min_ph = i;
+    	
+// ph
+        if (datos[i].ph < min_ph){
+            min_ph = datos[i].ph;
+            i_ph_min = i;
     	}
 
-        if (datos[i].conductividad > datos[max_conductividad].conductividad){
-            max_conductividad = i;
-        }else{
-            min_conductividad = i;
-        }
+        if (datos[i].ph > max_ph){
+             max_ph = datos[i].ph;
+            i_ph_max = i;
+    	}
+    	
+// conductividad    	
 
-        if (datos[i].turbidez > datos[max_turbidez].turbidez){
-            max_turbidez = i;
-        }else{
-            min_turbidez = i;
+        if (datos[i].conductividad < min_conductividad){
+            min_conductividad = datos[i].conductividad;
+            i_min_cond = 1;  
         }
+        
+        if (datos[i].conductividad > max_conductividad){        	
+           max_conductividad = datos[i].conductividad;
+           i_max_cond = i;
+        }   
+		
+// turbidez 		     
 
-        if (datos[i].coliformes > datos[max_coliformes].coliformes){
+        if (datos[i].turbidez < min_turbidez){
+            max_turbidez = datos[i].turbidez;
+            i_min_turb = i;
+        }
+        
+        if (datos[i].turbidez > max_turbidez){
+            max_turbidez = datos[i].turbidez;
+            i_max_turb = i;
+        }
+		        
+// coliformes
+
+        if (datos[i].coliformes < min_coliformes){
+        	min_coliformes = datos[i].coliformes;
             max_coliformes = i;
-        }else{
-            min_coliformes = i;
         }
-    }
+        
+        if (datos[i].coliformes > max_coliformes){
+        	max_coliformes = datos[i].coliformes;
+            max_coliformes = i;
 
-    printf("Numero mayor y menor de cada parametro:\n\n");
-    printf("pH: Mayor = %.2f (fuente_%d), Menor = %.2f (fuente_%d)\n\n", datos[max_ph].ph, max_ph, datos[min_ph].ph, min_ph);
-    printf("Conductividad: Mayor = %d (fuente_%d), Menor = %d (fuente_%d)\n\n", datos[max_conductividad].conductividad, max_conductividad, datos[min_conductividad].conductividad, min_conductividad);
-    printf("Turbidez: Mayor = %d (fuente_%d), Menor = %d (fuente_%d)\n\n", datos[max_turbidez].turbidez, max_turbidez, datos[min_turbidez].turbidez, min_turbidez);
-    printf("Coliformes: Mayor = %d (fuente_%d), Menor = %d (fuente_%d)\n\n", datos[max_coliformes].coliformes, max_coliformes, datos[min_coliformes].coliformes, min_coliformes);
+        }        
+    }
+    
+	system("cls");
+	
+    printf("Numero mayor y menor de cada parametro:\n");
+    printf("pH: Mayor = %.2f (fuente_%d), Menor = %.2f (fuente_%d)\n", max_ph , i_ph_max + 1, min_ph , i_ph_min + 1);
+    printf("Conductividad: Mayor = %d (fuente_%d), Menor = %d (fuente_%d)\n", max_conductividad, i_max_cond + 1, min_conductividad, i_min_cond + 1);
+    printf("Turbidez: Mayor = %d (fuente_%d), Menor = %d (fuente_%d)\n", max_turbidez, i_max_turb + 1, min_turbidez, i_min_turb + 1);
+    printf("Coliformes: Mayor = %d (fuente_%d), Menor = %d (fuente_%d)\n", max_coliformes, i_max_colif + 1, min_coliformes, i_min_coli + 1);
+    pulstarContinuar();
 }
+
 
 //Funcion para crear un nuevo fichero
 
