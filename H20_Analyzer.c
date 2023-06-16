@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #define PARAMETROS 100
 #define TAM_DATOS 100
 
